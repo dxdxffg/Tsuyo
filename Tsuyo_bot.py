@@ -6,7 +6,14 @@ from transformers import pipeline
 import torch
 import pandas as pd
 import random
+from threading import Thread
+from http.server import SimpleHTTPRequestHandler, HTTPServer
 
+def run_server():
+    server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
+    server.serve_forever()
+
+Thread(target=run_server, daemon=True).start()
 # -----------------------------
 # CSV 파일 이름 설정
 # -----------------------------
